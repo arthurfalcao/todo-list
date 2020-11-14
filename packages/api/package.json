@@ -1,10 +1,11 @@
 {
   "name": "todo-list-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.js",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon src/server.js",
+    "test": "mocha",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "eslint": "^7.13.0",
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.6",
     "prettier": "^2.1.2",
     "sequelize-cli": "^6.2.0"
