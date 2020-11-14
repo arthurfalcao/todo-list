@@ -1,0 +1,5 @@
+{
+  "spec": "src/**/*.spec.js",
+  "watch-files": ["src/**/*.spec.js"],
+  "watch-ignore": ["node_modules"]
+}
