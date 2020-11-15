@@ -14,5 +14,5 @@ module.exports = async ({ email, password, name }) => {
 
   const token = authService.signJWT({ userId: user.id });
 
-  return { token };
+  return { name: user.name, token };
 };

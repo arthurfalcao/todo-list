@@ -8,7 +8,7 @@ module.exports = async ({ email, password }) => {
 
   if (user && (await bcrypt.compare(password, user.password))) {
     const token = authService.signJWT({ userId: user.id });
-    return { token };
+    return { name: user.name, token };
   }
 
   throw new Error('Email or password incorrect');
