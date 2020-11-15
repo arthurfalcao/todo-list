@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const Task = require('../../../models/Task');
 
 module.exports = {
@@ -10,5 +11,12 @@ module.exports = {
 
   save(task) {
     return Task.create(task);
+  },
+
+  remove({ id, userId }) {
+    return Task.destroy({
+      where: { id, finishedAt: { [Op.is]: null } },
+      include: { association: 'project', where: { userId } },
+    });
   },
 };
