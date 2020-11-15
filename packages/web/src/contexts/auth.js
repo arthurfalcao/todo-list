@@ -1,24 +1,24 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext } from 'react';
 
-import * as userService from "../services/user";
+import * as userService from 'services/user';
 
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [status, setStatus] = useState("idle");
+  const [status, setStatus] = useState('idle');
 
-  const isPending = status === "idle" || status === "pending";
+  const isPending = status === 'idle' || status === 'pending';
 
   useEffect(() => {
-    const storagedUser = localStorage.getItem("username");
-    const storagedToken = localStorage.getItem("token");
+    const storagedUser = localStorage.getItem('username');
+    const storagedToken = localStorage.getItem('token');
 
     if (storagedUser && storagedToken) {
       setUser(JSON.parse(storagedUser));
-      setStatus("resolved");
+      setStatus('resolved');
     } else {
-      setStatus("rejected");
+      setStatus('rejected');
     }
   }, []);
 
@@ -27,8 +27,8 @@ function AuthProvider({ children }) {
 
     setUser(data.name);
 
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.name);
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('username', data.name);
   };
 
   const signUp = async ({ email, password, name }) => {
@@ -36,8 +36,8 @@ function AuthProvider({ children }) {
 
     setUser(data.name);
 
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.name);
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('username', data.name);
   };
 
   const signOut = () => {
@@ -51,11 +51,7 @@ function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider
-      value={{ signed: !!user, user, signIn, signUp, signOut }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn, signUp, signOut }}>{children}</AuthContext.Provider>
   );
 }
 
