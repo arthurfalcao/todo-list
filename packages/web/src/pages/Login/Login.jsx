@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 
+import AuthLayout from 'components/AuthLayout';
 import { useAuth } from 'contexts/auth';
 
 import * as S from './styles';
@@ -25,31 +26,27 @@ function Login() {
   };
 
   return (
-    <S.Wrapper>
-      <S.ContentWrapper>
-        <S.Title>TODO List</S.Title>
+    <AuthLayout>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <S.FormGroup>
+          <S.Input name="email" type="email" ref={register(rules)} placeholder="Email" error={!!errors.email} />
+        </S.FormGroup>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <S.FormGroup>
-            <S.Input name="email" type="email" ref={register(rules)} placeholder="Email" error={!!errors.email} />
-          </S.FormGroup>
+        <S.FormGroup>
+          <S.Input
+            name="password"
+            type="password"
+            ref={register(rules)}
+            placeholder="Senha"
+            error={!!errors.password}
+          />
+        </S.FormGroup>
 
-          <S.FormGroup>
-            <S.Input
-              name="password"
-              type="password"
-              ref={register(rules)}
-              placeholder="Senha"
-              error={!!errors.password}
-            />
-          </S.FormGroup>
-
-          <S.Button fullWidth type="submit">
-            Login
-          </S.Button>
-        </form>
-      </S.ContentWrapper>
-    </S.Wrapper>
+        <S.Button fullWidth type="submit">
+          Login
+        </S.Button>
+      </form>
+    </AuthLayout>
   );
 }
 
