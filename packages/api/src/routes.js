@@ -10,6 +10,8 @@ const { deleteProjectController } = require('./modules/todos/useCases/deleteProj
 const { createTaskController } = require('./modules/todos/useCases/createTask');
 const { updateTaskController } = require('./modules/todos/useCases/updateTask');
 const { deleteTaskController } = require('./modules/todos/useCases/deleteTask');
+const { finishTaskController } = require('./modules/todos/useCases/finishTask');
+const { unfinishTaskController } = require('./modules/todos/useCases/unfinishTask');
 
 const { createUserController } = require('./modules/users/useCases/createUser');
 const { loginController } = require('./modules/users/useCases/login');
@@ -26,6 +28,8 @@ router.delete('/projects/:id', authenticate, deleteProjectController);
 
 router.post('/tasks', authenticate, createTaskController);
 router.put('/tasks/:id', authenticate, updateTaskController);
+router.put('/tasks/:id/finish', authenticate, finishTaskController);
+router.put('/tasks/:id/unfinish', authenticate, unfinishTaskController);
 router.delete('/tasks/:id', authenticate, deleteTaskController);
 
 module.exports = router;
