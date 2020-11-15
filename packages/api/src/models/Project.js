@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-class User extends Model {
+class Project extends Model {
   static init(sequelize) {
     super.init(
       {
@@ -10,17 +10,9 @@ class User extends Model {
           primaryKey: true,
           type: DataTypes.UUID,
         },
-        email: {
+        userId: {
           allowNull: false,
-          type: DataTypes.STRING,
-          unique: true,
-          validate: {
-            isEmail: true,
-          },
-        },
-        password: {
-          allowNull: false,
-          type: DataTypes.STRING,
+          type: DataTypes.UUID,
         },
         name: {
           allowNull: false,
@@ -29,17 +21,22 @@ class User extends Model {
       },
       {
         sequelize,
-        tableName: 'users',
+        tableName: 'projects',
       }
     );
   }
 
   static associate(models) {
-    this.hasMany(models.Project, {
+    this.belongsTo(models.User, {
       foreignKey: 'userId',
-      as: 'projects',
+      as: 'user',
+    });
+
+    this.hasMany(models.Task, {
+      foreignKey: 'projectId',
+      as: 'tasks',
     });
   }
 }
 
-module.exports = User;
+module.exports = Project;
