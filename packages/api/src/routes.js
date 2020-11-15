@@ -1,5 +1,7 @@
 const { Router } = require('express');
 
+const authenticate = require('./middlewares/authenticate');
+
 const { getProjectsController } = require('./modules/todos/useCases/getProjects');
 const { createProjectController } = require('./modules/todos/useCases/createProject');
 const { updateProjectController } = require('./modules/todos/useCases/updateProject');
@@ -17,13 +19,13 @@ const router = Router();
 router.post('/signup', createUserController);
 router.post('/login', loginController);
 
-router.get('/projects', getProjectsController);
-router.post('/projects', createProjectController);
-router.put('/projects/:id', updateProjectController);
-router.delete('/projects/:id', deleteProjectController);
+router.get('/projects', authenticate, getProjectsController);
+router.post('/projects', authenticate, createProjectController);
+router.put('/projects/:id', authenticate, updateProjectController);
+router.delete('/projects/:id', authenticate, deleteProjectController);
 
-router.post('/tasks', createTaskController);
-router.put('/tasks/:id', updateTaskController);
-router.delete('/tasks/:id', deleteTaskController);
+router.post('/tasks', authenticate, createTaskController);
+router.put('/tasks/:id', authenticate, updateTaskController);
+router.delete('/tasks/:id', authenticate, deleteTaskController);
 
 module.exports = router;
