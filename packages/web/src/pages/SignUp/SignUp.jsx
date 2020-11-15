@@ -6,34 +6,36 @@ import * as S from './styles';
 
 const rules = { required: true };
 
-function Login() {
+function SignUp() {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
   });
 
-  const { signIn } = useAuth();
+  const { signUp } = useAuth();
 
   const onSubmit = async (data) => {
     try {
-      await signIn(data);
+      await signUp(data);
     } catch (err) {
-      reset();
+      reset({ ...data, password: '' });
     }
   };
 
   return (
     <S.Wrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <input name="name" ref={register(rules)} placeholder="Name" />
         <input name="email" type="email" ref={register(rules)} placeholder="Email" />
-        <input name="password" type="password" ref={register(rules)} placeholder="Senha" />
+        <input name="password" type="password" ref={register(rules)} placeholder="Password" />
 
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </S.Wrapper>
   );
 }
 
-export default Login;
+export default SignUp;
