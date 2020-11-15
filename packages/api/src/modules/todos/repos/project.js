@@ -8,4 +8,8 @@ module.exports = {
   save(project) {
     return Project.create(project);
   },
+
+  remove({ id, userId }) {
+    return Project.destroy({ where: { id, userId } });
+  },
 };
