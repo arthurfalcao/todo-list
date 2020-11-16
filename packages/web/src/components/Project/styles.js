@@ -117,6 +117,15 @@ export const Label = styled.label`
   color: #373737;
   font-size: 1.2rem;
   font-weight: bold;
+
+  > a {
+    color: #195b92;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `;
 
 export const Divider = styled.hr`

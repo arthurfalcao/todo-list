@@ -75,7 +75,9 @@ function Project({ id, name, tasks, onRemove }) {
           {toDos.map((task) => (
             <S.ContentItemWrapper key={task.id}>
               <S.Checkbox onChange={handleFinishTask(task.id)} />
-              <S.Label>{task.description}</S.Label>
+              <S.Label>
+                <Link to={`/tasks/${task.id}/edit`}>{task.description}</Link>
+              </S.Label>
 
               <S.ButtonWrapper>
                 <S.IconButton size="small" title="Remove task" onClick={handleRemoveTask(task.id)}>
