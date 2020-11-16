@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import Container from 'components/Container';
 import Navbar from 'components/Navbar';
 import ProjectForm from 'components/ProjectForm';
 
@@ -12,11 +13,11 @@ function UpdateProject() {
     <>
       <Navbar />
 
-      <S.Container>
+      <Container>
         <S.Wrapper>
           <ProjectForm id={id} />
         </S.Wrapper>
-      </S.Container>
+      </Container>
     </>
   );
 }
