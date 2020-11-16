@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.form`
-  background: #d8d8d8;
+  background: #edeff1;
   border-radius: 0.5rem;
   box-shadow: 0px 2px 10px rgba(210, 210, 210, 0.5);
   padding: 3.2rem;
