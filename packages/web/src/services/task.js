@@ -11,3 +11,7 @@ export const finish = (id) => {
 export const unfinish = (id) => {
   return api.put(`/tasks/${id}/unfinish`);
 };
+
+export const remove = (id) => {
+  return api.delete(`/tasks/${id}`);
+};

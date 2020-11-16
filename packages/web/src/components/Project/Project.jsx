@@ -45,17 +45,22 @@ function Project({ id, name, tasks, onRemove }) {
     setToDos((state) => [...state, task]);
   };
 
+  const handleRemoveTask = (id) => async () => {
+    await taskService.remove(id);
+    setToDos((state) => state.filter((t) => t.id !== id));
+  };
+
   return (
     <S.Wrapper>
       <S.Header>
         <S.HeaderTitle>{name}</S.HeaderTitle>
 
         <S.HeaderActions>
-          <S.IconButton title="Edit project">
+          <S.IconButton color="white" title="Edit project">
             <EditIcon />
           </S.IconButton>
 
-          <S.IconButton title="Remove project" onClick={handleRemoveProject}>
+          <S.IconButton color="white" title="Remove project" onClick={handleRemoveProject}>
             <DeleteIcon />
           </S.IconButton>
         </S.HeaderActions>
@@ -68,6 +73,12 @@ function Project({ id, name, tasks, onRemove }) {
             <S.ContentItemWrapper key={task.id}>
               <S.Checkbox onChange={handleFinishTask(task.id)} />
               <S.Label>{task.description}</S.Label>
+
+              <S.ButtonWrapper>
+                <S.IconButton size="small" title="Remove task" onClick={handleRemoveTask(task.id)}>
+                  <DeleteIcon />
+                </S.IconButton>
+              </S.ButtonWrapper>
             </S.ContentItemWrapper>
           ))}
         </S.Content>

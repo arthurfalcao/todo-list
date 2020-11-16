@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Wrapper = styled.div`
   border-radius: 0.5rem;
@@ -31,20 +31,41 @@ export const HeaderActions = styled.div`
   }
 `;
 
+const buttonModifiers = {
+  white: css`
+    color: #fff;
+  `,
+  default: css`
+    color: #195b92;
+  `,
+  small: css`
+    svg {
+      height: 1.4rem;
+      width: 1.4rem;
+    }
+  `,
+  medium: css`
+    svg {
+      height: 1.8rem;
+      width: 1.8rem;
+    }
+  `,
+};
+
 export const IconButton = styled.button`
-  border: 0;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
+  ${({ color, size }) => css`
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: flex;
 
-  &:hover {
-    opacity: 0.8;
-  }
+    &:hover {
+      opacity: 0.8;
+    }
 
-  svg {
-    height: 1.8rem;
-    width: 1.8rem;
-  }
+    ${buttonModifiers[color || 'default']}
+    ${buttonModifiers[size || 'medium']}
+  `}
 `;
 
 export const ContentWrapper = styled.div`
@@ -67,12 +88,24 @@ export const ContentTitle = styled.p`
   margin-bottom: 0.8rem;
 `;
 
+export const ButtonWrapper = styled.div`
+  display: none;
+`;
+
 export const ContentItemWrapper = styled.div`
   align-items: center;
   display: flex;
 
   &:not(:last-child) {
     margin-bottom: 0.8rem;
+  }
+
+  & > :not(:last-child) {
+    margin-right: 0.8rem;
+  }
+
+  &:hover ${ButtonWrapper} {
+    display: block;
   }
 `;
 
@@ -84,7 +117,6 @@ export const Label = styled.label`
   color: #373737;
   font-size: 1.2rem;
   font-weight: bold;
-  margin-left: 0.8rem;
 `;
 
 export const Divider = styled.hr`
