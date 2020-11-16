@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 import { MdDelete as DeleteIcon, MdEdit as EditIcon } from 'react-icons/md';
 
 import Button from 'components/Button';
@@ -58,7 +59,7 @@ function Project({ id, name, tasks, onRemove }) {
         <S.HeaderTitle>{name}</S.HeaderTitle>
 
         <S.HeaderActions>
-          <S.IconButton color="white" title="Edit project">
+          <S.IconButton color="white" title="Edit project" as={Link} to={`/projects/${id}/edit`}>
             <EditIcon />
           </S.IconButton>
 

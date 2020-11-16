@@ -8,6 +8,7 @@ import './App.css';
 const Login = lazy(() => import('pages/Login'));
 const SignUp = lazy(() => import('pages/SignUp'));
 const Home = lazy(() => import('pages/Home'));
+const UpdateProject = lazy(() => import('pages/UpdateProject'));
 
 function Route({ component: Component, isPrivate = false, ...props }) {
   const { signed } = useAuth();
@@ -29,6 +30,7 @@ function Routes() {
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/sign-up" component={SignUp} />
+        <Route path="/projects/:id/edit" component={UpdateProject} isPrivate />
         <Route path="/" component={Home} isPrivate />
       </Switch>
     </Suspense>
