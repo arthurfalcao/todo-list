@@ -3,6 +3,7 @@ const { Router } = require('express');
 const authenticate = require('./middlewares/authenticate');
 
 const { getProjectsController } = require('./modules/todos/useCases/getProjects');
+const { getProjectController } = require('./modules/todos/useCases/getProject');
 const { createProjectController } = require('./modules/todos/useCases/createProject');
 const { updateProjectController } = require('./modules/todos/useCases/updateProject');
 const { deleteProjectController } = require('./modules/todos/useCases/deleteProject');
@@ -22,6 +23,7 @@ router.post('/signup', createUserController);
 router.post('/login', loginController);
 
 router.get('/projects', authenticate, getProjectsController);
+router.get('/projects/:id', authenticate, getProjectController);
 router.post('/projects', authenticate, createProjectController);
 router.put('/projects/:id', authenticate, updateProjectController);
 router.delete('/projects/:id', authenticate, deleteProjectController);
