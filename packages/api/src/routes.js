@@ -3,10 +3,12 @@ const { Router } = require('express');
 const authenticate = require('./middlewares/authenticate');
 
 const { getProjectsController } = require('./modules/todos/useCases/getProjects');
+const { getProjectController } = require('./modules/todos/useCases/getProject');
 const { createProjectController } = require('./modules/todos/useCases/createProject');
 const { updateProjectController } = require('./modules/todos/useCases/updateProject');
 const { deleteProjectController } = require('./modules/todos/useCases/deleteProject');
 
+const { getTaskController } = require('./modules/todos/useCases/getTask');
 const { createTaskController } = require('./modules/todos/useCases/createTask');
 const { updateTaskController } = require('./modules/todos/useCases/updateTask');
 const { deleteTaskController } = require('./modules/todos/useCases/deleteTask');
@@ -22,10 +24,12 @@ router.post('/signup', createUserController);
 router.post('/login', loginController);
 
 router.get('/projects', authenticate, getProjectsController);
+router.get('/projects/:id', authenticate, getProjectController);
 router.post('/projects', authenticate, createProjectController);
 router.put('/projects/:id', authenticate, updateProjectController);
 router.delete('/projects/:id', authenticate, deleteProjectController);
 
+router.get('/tasks/:id', authenticate, getTaskController);
 router.post('/tasks', authenticate, createTaskController);
 router.put('/tasks/:id', authenticate, updateTaskController);
 router.put('/tasks/:id/finish', authenticate, finishTaskController);

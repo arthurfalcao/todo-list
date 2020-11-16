@@ -13,6 +13,7 @@ export const Title = styled.h1`
   color: #195b92;
   font-size: 2.4rem;
   text-align: center;
+  margin-bottom: 0.8rem;
 `;
 
 export const ContentWrapper = styled.div`

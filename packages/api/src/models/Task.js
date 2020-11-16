@@ -31,6 +31,8 @@ class Task extends Model {
     this.belongsTo(models.Project, {
       foreignKey: 'projectId',
       as: 'project',
+      onUpdate: 'cascade',
+      onDelete: 'cascade',
     });
   }
 }
