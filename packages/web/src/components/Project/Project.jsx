@@ -20,13 +20,14 @@ function Project({ id, name, tasks, onRemove }) {
     setDones(tasks.filter((t) => !!t.finishedAt));
   }, [tasks]);
 
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     defaultValues: { description: '' },
   });
 
   const onSubmit = async (formData) => {
     const { data } = await taskService.create({ ...formData, projectId: id });
     setToDos((state) => [...state, data]);
+    reset();
   };
 
   const handleRemoveProject = async () => {
