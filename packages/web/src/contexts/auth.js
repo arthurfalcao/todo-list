@@ -15,7 +15,7 @@ function AuthProvider({ children }) {
     const storagedToken = localStorage.getItem('token');
 
     if (storagedUser && storagedToken) {
-      setUser(JSON.parse(storagedUser));
+      setUser(storagedUser);
       setStatus('resolved');
     } else {
       setStatus('rejected');
