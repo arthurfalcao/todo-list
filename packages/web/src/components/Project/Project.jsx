@@ -4,6 +4,7 @@ import { MdDelete as DeleteIcon, MdEdit as EditIcon } from 'react-icons/md';
 
 import Button from 'components/Button';
 import Input from 'components/Input';
+import Tooltip from 'components/Tooltip';
 
 import * as projectService from 'services/project';
 import * as taskService from 'services/task';
@@ -88,7 +89,9 @@ function Project({ id, name, tasks, onRemove }) {
           {dones.map((task) => (
             <S.ContentItemWrapper key={task.id}>
               <S.Checkbox checked onChange={handleUninishTask(task.id)} />
-              <S.Label>{task.description}</S.Label>
+              <S.Label>
+                <Tooltip title={new Date(task.finishedAt).toLocaleString()}>{task.description}</Tooltip>
+              </S.Label>
             </S.ContentItemWrapper>
           ))}
         </S.Content>
