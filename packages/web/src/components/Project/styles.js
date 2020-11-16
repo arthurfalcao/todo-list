@@ -67,7 +67,25 @@ export const ContentTitle = styled.p`
   margin-bottom: 0.8rem;
 `;
 
-export const ContentItemWrapper = styled.div``;
+export const ContentItemWrapper = styled.div`
+  align-items: center;
+  display: flex;
+
+  &:not(:last-child) {
+    margin-bottom: 0.8rem;
+  }
+`;
+
+export const Checkbox = styled.input.attrs({
+  type: 'checkbox',
+})``;
+
+export const Label = styled.label`
+  color: #373737;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 0.8rem;
+`;
 
 export const Divider = styled.hr`
   height: 0;

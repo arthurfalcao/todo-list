@@ -33,6 +33,18 @@ function Project({ id, name, tasks, onRemove }) {
     onRemove(id);
   };
 
+  const handleFinishTask = (id) => async () => {
+    const { data: task } = await taskService.finish(id);
+    setToDos((state) => state.filter((t) => t.id !== id));
+    setDones((state) => [...state, task]);
+  };
+
+  const handleUninishTask = (id) => async () => {
+    const { data: task } = await taskService.unfinish(id);
+    setDones((state) => state.filter((t) => t.id !== id));
+    setToDos((state) => [...state, task]);
+  };
+
   return (
     <S.Wrapper>
       <S.Header>
@@ -53,14 +65,20 @@ function Project({ id, name, tasks, onRemove }) {
         <S.Content>
           <S.ContentTitle>To Do</S.ContentTitle>
           {toDos.map((task) => (
-            <S.ContentItemWrapper key={task.id}>{task.description}</S.ContentItemWrapper>
+            <S.ContentItemWrapper key={task.id}>
+              <S.Checkbox onChange={handleFinishTask(task.id)} />
+              <S.Label>{task.description}</S.Label>
+            </S.ContentItemWrapper>
           ))}
         </S.Content>
 
         <S.Content>
           {dones.length > 0 && <S.ContentTitle>Done</S.ContentTitle>}
           {dones.map((task) => (
-            <S.ContentItemWrapper key={task.id}>{task.description}</S.ContentItemWrapper>
+            <S.ContentItemWrapper key={task.id}>
+              <S.Checkbox checked onChange={handleUninishTask(task.id)} />
+              <S.Label>{task.description}</S.Label>
+            </S.ContentItemWrapper>
           ))}
         </S.Content>
       </S.ContentWrapper>
