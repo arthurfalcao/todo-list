@@ -1,13 +1,16 @@
 import { useForm } from 'react-hook-form';
 
-import { useAuth } from 'contexts/auth';
+import AuthLayout from 'components/AuthLayout';
+import Button from 'components/Button';
+import FormGroup from 'components/FormGroup';
+import Input from 'components/Input';
 
-import * as S from './styles';
+import { useAuth } from 'contexts/auth';
 
 const rules = { required: true };
 
 function SignUp() {
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, errors } = useForm({
     defaultValues: {
       name: '',
       email: '',
@@ -26,15 +29,31 @@ function SignUp() {
   };
 
   return (
-    <S.Wrapper>
+    <AuthLayout action={{ link: '/login', title: 'Login' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="name" ref={register(rules)} placeholder="Name" />
-        <input name="email" type="email" ref={register(rules)} placeholder="Email" />
-        <input name="password" type="password" ref={register(rules)} placeholder="Password" />
+        <FormGroup>
+          <Input name="name" ref={register(rules)} placeholder="Name" error={!!errors.name} />
+        </FormGroup>
 
-        <button type="submit">Register</button>
+        <FormGroup>
+          <Input name="email" type="email" ref={register(rules)} placeholder="Email" error={!!errors.email} />
+        </FormGroup>
+
+        <FormGroup>
+          <Input
+            name="password"
+            type="password"
+            ref={register(rules)}
+            placeholder="Password"
+            error={!!errors.password}
+          />
+        </FormGroup>
+
+        <Button fullWidth type="submit">
+          Register
+        </Button>
       </form>
-    </S.Wrapper>
+    </AuthLayout>
   );
 }
 

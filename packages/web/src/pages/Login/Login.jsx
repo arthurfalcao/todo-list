@@ -2,11 +2,10 @@ import { useForm } from 'react-hook-form';
 
 import AuthLayout from 'components/AuthLayout';
 import Button from 'components/Button';
+import FormGroup from 'components/FormGroup';
 import Input from 'components/Input';
 
 import { useAuth } from 'contexts/auth';
-
-import * as S from './styles';
 
 const rules = { required: true };
 
@@ -29,15 +28,15 @@ function Login() {
   };
 
   return (
-    <AuthLayout>
+    <AuthLayout action={{ link: '/sign-up', title: 'Register' }}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <S.FormGroup>
+        <FormGroup>
           <Input name="email" type="email" ref={register(rules)} placeholder="Email" error={!!errors.email} />
-        </S.FormGroup>
+        </FormGroup>
 
-        <S.FormGroup>
+        <FormGroup>
           <Input name="password" type="password" ref={register(rules)} placeholder="Senha" error={!!errors.password} />
-        </S.FormGroup>
+        </FormGroup>
 
         <Button fullWidth type="submit">
           Login
