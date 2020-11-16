@@ -14,6 +14,8 @@ module.exports = {
           model: 'projects',
           key: 'id',
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
       },
       description: {
         allowNull: false,
