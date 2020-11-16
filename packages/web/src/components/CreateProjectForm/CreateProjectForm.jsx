@@ -8,16 +8,15 @@ import * as projectService from 'services/project';
 
 import * as S from './styles';
 
-function CreateProjectForm() {
+function CreateProjectForm({ onAdded }) {
   const { register, handleSubmit, errors, reset } = useForm({
     defaultValues: { name: '' },
   });
 
   const onSubmit = async (formData) => {
-    const { data } = await projectService.create(formData);
+    await projectService.create(formData);
+    onAdded();
     reset();
-    // TODO: update project list
-    console.log('data', data);
   };
 
   return (
